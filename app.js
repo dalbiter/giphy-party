@@ -1,15 +1,19 @@
 
 const apiKey = 'FwMtLy7iMi60vRll6CqXY6pz3787jzrB'
 const gifContainer = document.querySelector('.gifContainer');
-const form = document.querySelector("#searchForm");
+const searchButton = document.querySelector(".searchButton");
 
-form.addEventListener("submit", e => {
+searchButton.addEventListener("click", e => {
     const input = document.querySelector(".searchBox");
     e.preventDefault();
     getGif(input.value);
     //console.log(input.value)
     input.value = '';
 });
+
+$(".danger").on("click", ()=> {
+    $(".gifContainer").empty()
+})
 
 async function getGif(query) {
     try {
@@ -21,8 +25,7 @@ async function getGif(query) {
         console.log(i)
         console.log(res)
         console.log(gifUrl)
-        createGif(gifUrl) 
-        
+        createGif(gifUrl)
     }
     catch(e) {
         alert("No gif found, please try a new search")
@@ -39,12 +42,4 @@ function createGif(gifUrl) {
     gifContainer.append(newDiv);
     newDiv.append(newGif);
     newGif.src = gifUrl;
-
 } 
-
-
-
-
-
-
-
